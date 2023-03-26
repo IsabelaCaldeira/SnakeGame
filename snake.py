@@ -34,7 +34,7 @@ font = pygame.font.Font('freesansbold.ttf', 18)
 
 game_over = False
 while not game_over:
-    clock.tick(20)
+    clock.tick(30)
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
@@ -54,13 +54,28 @@ while not game_over:
     if collision(snake[0], food_pos):
         food_pos = on_grid_random()
         snake.append((0,0))
+  
+      
         
+    # Check if the snake has collided with boundaries
+    if snake[0][0] == 600 or snake[0][1] == 600 or snake[0][0] < 0 or snake [0][1] < 0:
+        game_over = True
+        break
+    
+    # Check if the snake has collided with itself
+    for i in range(1, len(snake) - 1):
+        if snake[0][0] == snake[i][0] and snake[0][1] == snake[i][1]:
+            game_over = True
+            break
+          
     if game_over:
         break
-        
+
     for i in range(len(snake) - 1, 0, -1):
         snake[i] = (snake[i-1][0], snake[i-1][1])
 
+
+    #Snake movements 
     if my_direction ==  UP:
         snake[0] = (snake[0][0], snake[0][1] - 10)
     if my_direction ==  DOWN:
