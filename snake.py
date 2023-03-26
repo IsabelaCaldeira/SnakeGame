@@ -30,7 +30,10 @@ my_direction = LEFT
 
 clock = pygame.time.Clock()
 
-while True:
+font = pygame.font.Font('freesansbold.ttf', 18)
+
+game_over = False
+while not game_over:
     clock.tick(20)
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -51,6 +54,9 @@ while True:
         food_pos = on_grid_random()
         snake.append((0,0))
         
+    if game_over:
+        break
+        
     for i in range(len(snake) - 1, 0, -1):
         snake[i] = (snake[i-1][0], snake[i-1][1])
 
@@ -70,3 +76,17 @@ while True:
         screen.blit(snake_skin, pos)
             
     pygame.display.update()
+    
+while True:
+    game_over_font = pygame.font.Font('freesansbold.ttf', 75)
+    game_over_screen = game_over_font.render('Game Over', True, (255,255,255))
+    game_over_rect = game_over_screen.get_rect()
+    game_over_rect.midtop = (600 / 2, 100)
+    screen.blit(game_over_screen, game_over_rect)
+    pygame.display.update()
+    pygame.time.wait(500)
+    while True:
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                exit()
