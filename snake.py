@@ -39,14 +39,15 @@ while not game_over:
         if event.type == QUIT:
             pygame.quit()
             exit()
+            
         if event.type == KEYDOWN:
-            if event.key == K_UP:
+            if event.key == K_UP and my_direction != DOWN:
                 my_direction = UP
-            if event.key == K_DOWN:
+            if event.key == K_DOWN and my_direction != UP:
                 my_direction = DOWN
-            if event.key == K_LEFT:
+            if event.key == K_LEFT and my_direction != RIGHT:
                 my_direction = LEFT
-            if event.key == K_RIGHT:
+            if event.key == K_RIGHT and my_direction != LEFT:
                 my_direction = RIGHT
                 
             
