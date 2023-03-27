@@ -31,6 +31,7 @@ my_direction = LEFT
 clock = pygame.time.Clock()
 
 font = pygame.font.Font('freesansbold.ttf', 18)
+score = 0
 
 game_over = False
 while not game_over:
@@ -54,6 +55,7 @@ while not game_over:
     if collision(snake[0], food_pos):
         food_pos = on_grid_random()
         snake.append((0,0))
+        score = score + 1
   
       
         
@@ -87,6 +89,11 @@ while not game_over:
                
     screen.fill((0,0,0))
     screen.blit(food, food_pos)
+    
+    score_font = font.render('Pontuação: %s' % (score), True, (255,255,255))
+    score_rect = score_font.get_rect()
+    score_rect.topleft = (20, 10)
+    screen.blit(score_font, score_rect)
     
     for pos in snake: 
         screen.blit(snake_skin, pos)
