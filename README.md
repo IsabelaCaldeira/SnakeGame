@@ -1,4 +1,4 @@
- # Snake Game
+ # :snake: Snake Game
 
 The classical and nostalgic snake game made with python
 
