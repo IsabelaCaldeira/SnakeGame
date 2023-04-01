@@ -32,10 +32,11 @@ clock = pygame.time.Clock()
 
 font = pygame.font.Font('freesansbold.ttf', 18)
 score = 0
+snake_speed = 20
 
 game_over = False
 while not game_over:
-    clock.tick(30)
+    clock.tick(snake_speed)
     for event in pygame.event.get():
         if event.type == QUIT:
             pygame.quit()
@@ -56,6 +57,7 @@ while not game_over:
         food_pos = on_grid_random()
         snake.append((0,0))
         score = score + 1
+        snake_speed = snake_speed + 4
   
       
         
