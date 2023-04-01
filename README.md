@@ -25,5 +25,5 @@ After your pull request is merged, you can delete your branch.
 
 ```bash
 # Have Fun!
-$ Python3 snake.py
+$ python3 snake.py
 ```
