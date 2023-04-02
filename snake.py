@@ -92,6 +92,13 @@ while not game_over:
     screen.fill((0,0,0))
     screen.blit(food, food_pos)
     
+    # Draw horizontal lines
+    for x in range(0, 600, 10): 
+        pygame.draw.line(screen, (40, 40, 40), (x, 0), (x, 600))
+    # Draw vertical lines
+    for y in range(0, 600, 10): 
+        pygame.draw.line(screen, (40, 40, 40), (0, y), (600, y))
+    
     score_font = font.render('Pontuação: %s' % (score), True, (255,255,255))
     score_rect = score_font.get_rect()
     score_rect.topleft = (20, 10)
