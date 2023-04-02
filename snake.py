@@ -21,6 +21,7 @@ pygame.display.set_caption('Snake Game')
 snake = [(200, 200),(210, 200), (220, 200)]
 snake_skin = pygame.Surface((10,10))
 snake_skin.fill((255,255,255))
+snake_speed = 20
 
 food_pos = on_grid_random()
 food = pygame.Surface((10,10))
@@ -32,7 +33,6 @@ clock = pygame.time.Clock()
 
 font = pygame.font.Font('freesansbold.ttf', 18)
 score = 0
-snake_speed = 20
 
 game_over = False
 while not game_over:
