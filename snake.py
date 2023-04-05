@@ -35,6 +35,7 @@ font = pygame.font.Font('freesansbold.ttf', 18)
 score = 0
 
 game_over = False
+
 while not game_over:
     clock.tick(snake_speed)
     for event in pygame.event.get():
@@ -42,16 +43,18 @@ while not game_over:
             pygame.quit()
             exit()
             
-        if event.type == KEYDOWN:
-            if event.key == K_UP and my_direction != DOWN:
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_UP and my_direction != DOWN:
                 my_direction = UP
-            if event.key == K_DOWN and my_direction != UP:
+            if event.key == pygame.K_DOWN and my_direction != UP:
                 my_direction = DOWN
-            if event.key == K_LEFT and my_direction != RIGHT:
+            if event.key == pygame.K_LEFT and my_direction != RIGHT:
                 my_direction = LEFT
-            if event.key == K_RIGHT and my_direction != LEFT:
+            if event.key == pygame.K_RIGHT and my_direction != LEFT:
                 my_direction = RIGHT
-                
+           
+       
+           
             
     if collision(snake[0], food_pos):
         food_pos = on_grid_random()
@@ -114,9 +117,18 @@ while True:
     game_over_screen = game_over_font.render('Game Over', True, (255,255,255))
     game_over_rect = game_over_screen.get_rect()
     game_over_rect.midtop = (600 / 2, 100)
+    
+   
+    
     screen.blit(game_over_screen, game_over_rect)
+    screen.blit(restart_screen, restart_rect)
     pygame.display.update()
     pygame.time.wait(500)
+    
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_SPACE:
+                score = 0
+                game_over = False
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
