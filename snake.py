@@ -20,6 +20,7 @@ pygame.init()
 screen = pygame.display.set_mode((600,600))
 pygame.display.set_caption('Snake Game')
 
+#Restart Function
 def restart_game():
     restart_font = pygame.font.Font('freesansbold.ttf',50)
     restart_screen = restart_font.render('Press Space to Restart', True, (100, 100, 100))
@@ -41,7 +42,7 @@ def restart_game():
                     
         pygame.display.update()   
               
-
+#The game itself
 def start_game():
     snake = [(200, 200),(210, 200), (220, 200)]
     snake_skin = pygame.Surface((10,10))
@@ -66,7 +67,8 @@ def start_game():
             if event.type == QUIT:
                 pygame.quit()
                 exit()
-                
+            
+            #Movements Comamands 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_UP and my_direction != DOWN:
                     my_direction = UP
@@ -79,7 +81,7 @@ def start_game():
             
         
             
-                
+        #Adding points, speed and the new part of the snake        
         if collision(snake[0], food_pos):
             food_pos = on_grid_random()
             snake.append((0,0))
@@ -126,6 +128,7 @@ def start_game():
         for y in range(0, 600, 10): 
             pygame.draw.line(screen, (40, 40, 40), (0, y), (600, y))
         
+        #Displaying Score
         score_font = font.render('Score: %s' % (score), True, (255,255,255))
         score_rect = score_font.get_rect()
         score_rect.topleft = (20, 10)
@@ -137,6 +140,7 @@ def start_game():
         pygame.display.update()
         
     while True:
+        #Displaying Game Over
         game_over_font = pygame.font.Font('freesansbold.ttf', 75)
         game_over_screen = game_over_font.render('Game Over', True, (255,255,255))
         game_over_rect = game_over_screen.get_rect()
