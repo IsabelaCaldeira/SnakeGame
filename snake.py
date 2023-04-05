@@ -118,17 +118,17 @@ while True:
     game_over_rect = game_over_screen.get_rect()
     game_over_rect.midtop = (600 / 2, 100)
     
-   
+    restart_font = pygame.font.Font('freesansbold.ttf',50)
+    restart_screen = restart_font.render('Press Space to Restart', True, (100, 100, 100))
+    restart_rect = restart_screen.get_rect()
+    restart_rect.midtop = (300, 300)
     
     screen.blit(game_over_screen, game_over_rect)
     screen.blit(restart_screen, restart_rect)
     pygame.display.update()
     pygame.time.wait(500)
     
-    if event.type == pygame.KEYDOWN:
-        if event.key == pygame.K_SPACE:
-                score = 0
-                game_over = False
+    
     while True:
         for event in pygame.event.get():
             if event.type == QUIT:
