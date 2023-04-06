@@ -58,7 +58,7 @@ def start_game():
     
     font = pygame.font.Font('freesansbold.ttf', 18)
     score = 0
-    highscore = 0
+    high_score = 0
 
     game_over = False
 
@@ -136,10 +136,13 @@ def start_game():
         screen.blit(score_font, score_rect)
         
         #Displaying Highscore
-        highscore_font = font.render('Highscore: ', True, (255,255,255))
-        highscore_rect = score_font.get_rect()
-        highscore_rect.topright = (550, 10)
-        screen.blit(highscore_font, highscore_rect)
+        high_score_font = font.render('Highscore: %s'% (high_score), True, (255,255,255))
+        high_score_rect = score_font.get_rect()
+        high_score_rect.topright = (550, 10)
+        screen.blit(high_score_font, high_score_rect)
+        
+        if score > high_score:
+            high_score = score
         
         for pos in snake: 
             screen.blit(snake_skin, pos)
