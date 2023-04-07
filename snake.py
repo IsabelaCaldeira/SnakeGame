@@ -1,6 +1,6 @@
 import pygame, random
 from pygame.locals import *
-import os
+from os.path import expanduser
 
 def on_grid_random():
     x = random.randint(0,590)
@@ -22,7 +22,7 @@ screen = pygame.display.set_mode((600,600))
 pygame.display.set_caption('Snake Game')
 
 #Set file save location
-save_file_name = os.environ['USERPROFILE']+"\score.dat"
+save_file_name = expanduser("~")+"/score.dat"
 
 #Save high score to file
 def save_hi_score(file_name, value):
