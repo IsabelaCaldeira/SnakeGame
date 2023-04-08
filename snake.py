@@ -169,7 +169,7 @@ def start_game():
         #Displaying Highscore
         high_score_font = font.render('Highscore: %s'% (high_score), True, (255,255,255))
         high_score_rect = score_font.get_rect()
-        high_score_rect.topright = (520, 10)
+        high_score_rect.topright = (540, 10)
         screen.blit(high_score_font, high_score_rect)
         
         if score > high_score:
