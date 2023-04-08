@@ -87,8 +87,8 @@ def start_game():
 
     
     font = pygame.font.Font('freesansbold.ttf', 18)
+    
     score = 0
-
     high_score = get_hi_score(save_file_name)
 
     game_over = False
