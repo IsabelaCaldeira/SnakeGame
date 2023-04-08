@@ -41,7 +41,7 @@ def get_hi_score(file_name):
         points = int(save_file.read())
         save_file.close()
     except:
-        print("Error to read data!!!, attempting to create a new save file...")
+        print("Error to read data!!! Attempting to create a new save file...")
         save_file = open(file_name,"w")
         if(save_file):
             print("Save game file created!")
