@@ -1,5 +1,6 @@
 import pygame, random
 from pygame.locals import *
+from os.path import expanduser
 
 def on_grid_random():
     x = random.randint(0,590)
@@ -19,6 +20,35 @@ clock = pygame.time.Clock()
 pygame.init()
 screen = pygame.display.set_mode((600,600))
 pygame.display.set_caption('Snake Game')
+
+#Set file save location
+save_file_name = expanduser("~")+"/score.dat"
+
+#Save high score to file
+def save_hi_score(file_name, value):
+    try:
+        save_file = open(file_name,"w")
+        save_file.write(str(value))
+        save_file.close()
+    except:
+        print("Error to save data!!!")
+
+#Read high score from file
+def get_hi_score(file_name):
+    points = 0
+    try:
+        save_file = open(file_name,"r+")
+        points = int(save_file.read())
+        save_file.close()
+    except:
+        print("Error to read data!!!, attempting to create a new save file...")
+        save_file = open(file_name,"w")
+        if(save_file):
+            print("Save game file created!")
+            save_file.write(str(points))
+            save_file.close()
+
+    return points
 
 #Restart Function
 def restart_game():
@@ -40,7 +70,7 @@ def restart_game():
                 if event.key == pygame.K_SPACE:
                     start_game()
                     
-        pygame.display.update()   
+        pygame.display.update()  
               
 #The game itself
 def start_game():
@@ -58,7 +88,8 @@ def start_game():
     
     font = pygame.font.Font('freesansbold.ttf', 18)
     score = 0
-    high_score = 0
+
+    high_score = get_hi_score(save_file_name)
 
     game_over = False
 
@@ -138,11 +169,12 @@ def start_game():
         #Displaying Highscore
         high_score_font = font.render('Highscore: %s'% (high_score), True, (255,255,255))
         high_score_rect = score_font.get_rect()
-        high_score_rect.topright = (550, 10)
+        high_score_rect.topright = (520, 10)
         screen.blit(high_score_font, high_score_rect)
         
         if score > high_score:
             high_score = score
+            save_hi_score(save_file_name, high_score)
         
         for pos in snake: 
             screen.blit(snake_skin, pos)
