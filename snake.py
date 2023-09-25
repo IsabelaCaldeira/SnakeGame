@@ -77,7 +77,7 @@ def start_game():
     snake = [(200, 200),(210, 200), (220, 200)]
     snake_skin = pygame.Surface((10,10))
     snake_skin.fill((34,139,34))
-    snake_speed = 20
+    snake_speed = 15
 
     food_pos = on_grid_random()
     food = pygame.Surface((10,10))
